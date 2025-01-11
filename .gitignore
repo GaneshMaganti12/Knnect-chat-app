@@ -1,0 +1,4 @@
+node_modules
+frontend/node_modules
+knnectServiceAccountKey.json
+.env

@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-handler": "^1.2.0",
+    "firebase-admin": "^13.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.3",
+    "nodemailer": "^6.9.16",
+    "nodemon": "^3.1.7",
+    "socket.io": "^4.8.1"
+  },
+  "name": "knnect",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "author": "Ganesh Maganti",
+  "license": "ISC",
+  "description": "Backend for Knnect, a real-time chat application that supports seamless communication with features like one-to-one messaging, message reactions, delete messages, and secure authentication using JWT."
+}
