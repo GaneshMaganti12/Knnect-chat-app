@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
-const ENDPOINT = "http://localhost:4000";
+const ENDPOINT = "https://knnect.onrender.com";
 
 export function useSocket(userId) {
   const socketRef = useRef();
