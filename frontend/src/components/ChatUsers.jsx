@@ -13,6 +13,8 @@ import {
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../hooks/socket";
+import { IoMdSearch } from "react-icons/io";
+import { RxCross1 } from "react-icons/rx";
 
 function ChatUsers() {
   const {
@@ -27,6 +29,8 @@ function ChatUsers() {
   const { userId } = getUserDetails(token);
   const navigate = useNavigate();
   const { onEvent, offEvent } = useSocket(userId);
+  const [searchUser, setSearchUser] = useState("");
+  const [userChatsList, setUserChatsList] = useState([]);
 
   // function to fetch the user chat data.
   const fetchChatData = async () => {
@@ -50,6 +54,19 @@ function ChatUsers() {
     getSelectedChatUserData({ ...user, isActive: true });
     navigate(`/chat?id=${userId}&id=${user.chatId}`);
   };
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchUser(value);
+    const filteredChats = userChatArray.filter((user) =>
+      user.chatUsers.name.toLowerCase().includes(value)
+    );
+    setUserChatsList(filteredChats);
+  };
+
+  useEffect(() => {
+    setUserChatsList(userChatArray);
+  }, [userChatArray]);
 
   useEffect(() => {
     if (Object.keys(selectedChatUser).length > 0) {
@@ -107,7 +124,26 @@ function ChatUsers() {
   });
 
   return (
-    <>
+    <div className="flex flex-col gap-3 h-full">
+      <div className="flex items-center gap-2 border-2 border-gray-400 rounded-full px-3 py-1">
+        <IoMdSearch className="h-6 w-6 text-gray-600" />
+        <input
+          type="text"
+          className="outline-none flex-1"
+          placeholder="Search"
+          value={searchUser}
+          onChange={handleSearch}
+        />
+        {searchUser && (
+          <RxCross1
+            className="h-5 w-5 text-gray-600 cursor-pointer"
+            onClick={() => {
+              setSearchUser("");
+              setUserChatsList(userChatArray);
+            }}
+          />
+        )}
+      </div>
       {isLoading ? (
         <div className="h-full flex items-center justify-center">
           <ThreeDots
@@ -121,13 +157,13 @@ function ChatUsers() {
             wrapperClass=""
           />
         </div>
-      ) : userChatArray.length === 0 ? (
+      ) : userChatsList.length === 0 ? (
         <div className="h-full flex items-center justify-center">
           <h1 className="text-md text-slate-300 font-medium">No chat users</h1>
         </div>
       ) : (
         <ul className="flex- flex-col">
-          {userChatArray?.map((user) => (
+          {userChatsList?.map((user) => (
             <li
               key={user.chatId}
               className={`w-full flex items-start gap-4 p-3 ${
@@ -176,7 +212,7 @@ function ChatUsers() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

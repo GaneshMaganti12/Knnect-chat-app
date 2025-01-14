@@ -51,7 +51,7 @@ function ChatUsersLayout() {
   };
 
   return (
-    <div className="relative h-full w-full lg:w-[50%] bg-white lg:rounded-lg px-6 py-6 overflow-hidden">
+    <div className="relative h-full w-full lg:w-[50%] bg-white lg:rounded-lg px-6 py-6 space-y-6 overflow-hidden">
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <h1 className="text-gray-800 font-bold text-2xl">My Chats</h1>
@@ -62,7 +62,6 @@ function ChatUsersLayout() {
             <AiOutlineUserAdd className="size-5" /> Add Users
           </button>
         </div>
-        <hr className="border mb-2" />
 
         {/* sidebar for add the users into chats */}
         <div
