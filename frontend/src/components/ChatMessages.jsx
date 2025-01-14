@@ -255,7 +255,7 @@ function ChatMessages() {
                 {selectedChatUser.chatUsers.name}
               </h1>
               <p className="text-center">{selectedChatUser.chatUsers.email}</p>
-              <p className="text-sm">
+              <p className="text-sm text-center">
                 Active Status:
                 {findUserFromActiveUserArray(
                   activeUsersArray,

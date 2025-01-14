@@ -338,8 +338,8 @@ export const formatMessageTimestamp = (timestamp) => {
     return "Yesterday";
   } else {
     const date = messageTime.toLocaleDateString().split("/");
-    return `${date[1].length > 9 ? date[1] : `0${date[1]}`}/${
-      date[0].length > 9 ? date[0] : `0${date[0]}`
+    return `${date[1].length === 1 ? `0${date[1]}` : date[1]}/${
+      date[0].length === 1 ? `0${date[0]}` : date[0]
     }/${date[2]}`;
   }
 };
